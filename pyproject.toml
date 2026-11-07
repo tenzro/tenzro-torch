@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tenzro-torch"
+version = "0.1.0"
+description = "PyTorch helpers for Tenzro: nn.Modules that call a Tenzro node for remote embeddings and chat, and a validated torch-to-ONNX export"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
+dependencies = ["torch>=2.5", "httpx>=0.27", "numpy"]
+
+[project.optional-dependencies]
+onnx = ["onnx>=1.15", "onnxruntime>=1.17", "onnxscript"]
+chat = ["tenzro"]  # not on PyPI yet: pip install ./tenzro-network/sdk/tenzro-py
+test = ["pytest", "onnx>=1.15", "onnxruntime>=1.17", "onnxscript"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
